@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Result</title>
+</head>
+<body>
+    <h2>Result Time</h2>
+    Based on the marks = {{ results }}
+
+    {% if results|int >= 50 %}
+        <h3>You have passed with marks {{ results }}</h3>
+    {% else %}
+        <h3>You have failed with marks {{ results }}</h3>
+    {% endif %}
+
+</body>
+</html>

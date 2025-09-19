@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Results</title>
+</head>
+<body>
+    <form action="/pce" method="POST">
+        <label for="physics">Physics:</label>
+        <input type="number" name="physics" required>
+        
+        <label for="chemistry">Chemistry:</label>
+        <input type="number" name="chemistry" required>
+    
+        <label for="maths">Maths:</label>
+        <input type="number" name="maths" required>
+    
+        <label for="biology">Biology:</label>
+        <input type="number" name="biology" required>
+    
+        <button type="submit">Submit</button>
+    </form>
+    <p>If you click a submit button, the form-data will be sent to a page called "/submit"</p>
+</body>
+</html>
