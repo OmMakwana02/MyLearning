@@ -1,0 +1,5 @@
+This is the logs file.
+Logs are updated here.
+[SUCCESS] Process Completed
+[ERROR] File Not Found
+[FILE STORED] File Stored Successfully

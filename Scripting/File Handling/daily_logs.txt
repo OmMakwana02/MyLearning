@@ -1,0 +1,4 @@
+[HELLO] The program welcomes you.
+[Welcome] Yokozo
+[Excuse me] Sumimasen
+[Clean] kirai

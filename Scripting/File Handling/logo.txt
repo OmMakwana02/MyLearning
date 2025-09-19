@@ -1,0 +1,7 @@
+[INFO] This is a new log entry.
+[ERROR] An error occurred.
+[ERROR4] Data cannot be loaded.
+[ERROR 404] Content not found.
+[TASK DONE] Succes.
+[INFO] Additional log entry.
+[WARNING] This is a warning message.
