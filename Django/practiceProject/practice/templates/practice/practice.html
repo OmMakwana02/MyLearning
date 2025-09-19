@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block title %}Apps{% endblock %}
+
+{% block content %}
+  <h1 class="bg-sky-600 text-center text-3xl">Practice Apps</h1>
+  <p class="p-3">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Blanditiis laudantium ipsum possimus sed at, voluptatem eveniet voluptates, voluptas debitis et fugiat, quos doloribus expedita ad architecto aspernatur est eaque quasi.lorem</p>
+  
+  <div class="flex items-center justify-center h-full">
+    <a href="{% url 'order' %}">
+      <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+        Order
+      </button>
+    </a>
+  </div>
+
+  <div class="grid grid-cols-3 gap-4 m-4">
+    {% for pract in practice %}
+    <div class="bg-sky-600 p-5 rounded-2xl flex flex-col justify-between h-full">
+      
+      <img class="rounded shadow-lg h-48 w-full object-cover" src="{{ pract.image.url }}" alt="">
+      
+      <div class="flex items-center justify-between mt-4">
+        <h3 class="text-lg font-semibold text-white">{{ pract.name }}</h3>
+        <p class="text-lg text-white">Hrs - {{ pract.time_req }}</p>
+      </div>
+    
+      <div class="mt-auto pt-4">
+        <a href="{% url 'practice_detail' pract.id %}">
+          <button 
+            type="button"
+            class="bg-blue-800 text-white p-2 w-full rounded-lg hover:bg-blue-600 transition-colors"
+          >
+            {{ pract.type }} - {{ pract.id }}
+          </button>
+        </a>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+  <div class="flex items-center justify-center h-full">
+    <a href="{% url 'school' %}">
+      <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+        Schools
+      </button>
+    </a>
+  </div>
+
+{% endblock %}

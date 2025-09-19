@@ -1,0 +1,28 @@
+body{
+  background-color: rgb(24, 55, 209);
+  color: white;
+
+}
+
+.container h1{
+  text-align: center;
+  font-size: 2em;
+}
+.container a{
+  display: inline-block;
+  text-align: center;
+  font-size: 1.5em;
+  color: white;
+  padding: 10px 20px;
+  text-decoration: none;
+  margin: 10px;
+  border-radius: 5px;
+  background-color: rgb(24, 55, 209);
+  border: 1px solid white;
+  transition: background-color 0.3s ease;
+}
+.container a:hover{
+  background-color: rgb(131, 188, 246);
+}
+
+/* .contact-container{} */
