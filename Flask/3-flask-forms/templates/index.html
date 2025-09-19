@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}Forms{% endblock %}
+{% block content %}
+
+  <h2>Welcome to Forms.</h2>
+  <form method="POST" action="{{ url_for('index') }}">
+    <input type="text" name="username" placeholder="Username"><br>
+    <input type="text" name="password" placeholder="Password"><br>
+    <input type="submit" value="Login">
+  </form>
+
+  <h2>File Upload</h2>
+  <form method="POST" action="{{ url_for('file_upload') }}" enctype="multipart/form-data">
+    <input type="file" name="file" accept="application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, text/plain" required="required">
+    <input type="submit" value="Upload File">
+  </form>
+
+  <h2>Convert to CSV</h2>
+  <form method="POST" action="{{ url_for('convert') }}" enctype="multipart/form-data">
+    <input type="file" name="file" accept="application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" required="required">
+    <input type="submit" value="Upload File">
+  </form>
+
+  <h2>Convert to CSV and Download</h2>
+  <form method="POST" action="{{ url_for('convert_csv_two') }}" enctype="multipart/form-data">
+    <input type="file" name="file" accept="application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" required="required">
+    <input type="submit" value="Upload File">
+  </form>
+
+{% endblock %}
+

@@ -1,0 +1,155 @@
+{% extends "base.html" %}
+{% block title %}Pokemon Types{% endblock %}
+{% block style %}
+    .types-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 20px;
+        padding: 20px;
+    }
+    .type-card {
+        padding: 20px;
+        border-radius: 10px;
+        text-align: center;
+        color: white;
+        cursor: pointer;
+        transition: transform 0.2s;
+    }
+    .type-card:hover {
+        transform: scale(1.05);
+    }
+    .type-card h3 {
+        margin: 0;
+        text-transform: capitalize;
+    }
+    .pokemon-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 20px;
+        padding: 20px;
+        margin-top: 20px;
+    }
+    .pokemon-card {
+        background: white;
+        border-radius: 10px;
+        padding: 15px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        text-align: center;
+        transition: transform 0.2s;
+    }
+    .pokemon-card:hover {
+        transform: scale(1.05);
+    }
+    .pokemon-card img {
+        width: 120px;
+        height: 120px;
+        margin-bottom: 10px;
+    }
+    .pokemon-card h3 {
+        margin: 10px 0;
+        text-transform: capitalize;
+    }
+    .type-badge {
+        display: inline-block;
+        padding: 5px 10px;
+        margin: 5px;
+        border-radius: 15px;
+        color: white;
+        font-weight: bold;
+        text-transform: capitalize;
+    }
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>Pokemon Types</h2>
+    <div class="types-grid">
+        <div class="type-card" style="background-color: var(--normal)" onclick="showPokemonByType('normal')">
+            <h3>Normal</h3>
+        </div>
+        <div class="type-card" style="background-color: var(--fire)" onclick="showPokemonByType('fire')">
+            <h3>Fire</h3>
+        </div>
+        <div class="type-card" style="background-color: var(--water)" onclick="showPokemonByType('water')">
+            <h3>Water</h3>
+        </div>
+        <div class="type-card" style="background-color: var(--electric)" onclick="showPokemonByType('electric')">
+            <h3>Electric</h3>
+        </div>
+        <div class="type-card" style="background-color: var(--grass)" onclick="showPokemonByType('grass')">
+            <h3>Grass</h3>
+        </div>
+        <div class="type-card" style="background-color: var(--ice)" onclick="showPokemonByType('ice')">
+            <h3>Ice</h3>
+        </div>
+        <div class="type-card" style="background-color: var(--fighting)" onclick="showPokemonByType('fighting')">
+            <h3>Fighting</h3>
+        </div>
+        <div class="type-card" style="background-color: var(--poison)" onclick="showPokemonByType('poison')">
+            <h3>Poison</h3>
+        </div>
+        <div class="type-card" style="background-color: var(--ground)" onclick="showPokemonByType('ground')">
+            <h3>Ground</h3>
+        </div>
+        <div class="type-card" style="background-color: var(--flying)" onclick="showPokemonByType('flying')">
+            <h3>Flying</h3>
+        </div>
+        <div class="type-card" style="background-color: var(--psychic)" onclick="showPokemonByType('psychic')">
+            <h3>Psychic</h3>
+        </div>
+        <div class="type-card" style="background-color: var(--bug)" onclick="showPokemonByType('bug')">
+            <h3>Bug</h3>
+        </div>
+        <div class="type-card" style="background-color: var(--rock)" onclick="showPokemonByType('rock')">
+            <h3>Rock</h3>
+        </div>
+        <div class="type-card" style="background-color: var(--ghost)" onclick="showPokemonByType('ghost')">
+            <h3>Ghost</h3>
+        </div>
+        <div class="type-card" style="background-color: var(--dragon)" onclick="showPokemonByType('dragon')">
+            <h3>Dragon</h3>
+        </div>
+        <div class="type-card" style="background-color: var(--dark)" onclick="showPokemonByType('dark')">
+            <h3>Dark</h3>
+        </div>
+        <div class="type-card" style="background-color: var(--steel)" onclick="showPokemonByType('steel')">
+            <h3>Steel</h3>
+        </div>
+        <div class="type-card" style="background-color: var(--fairy)" onclick="showPokemonByType('fairy')">
+            <h3>Fairy</h3>
+        </div>
+    </div>
+
+    <div id="pokemon-list" class="pokemon-grid"></div>
+</div>
+
+<script>
+async function showPokemonByType(type) {
+    const pokemonList = document.getElementById('pokemon-list');
+    pokemonList.innerHTML = '<p>Loading Pokemon...</p>';
+    
+    try {
+        const response = await fetch(`/type/${type}`);
+        const pokemon = await response.json();
+        
+        if (response.ok) {
+            pokemonList.innerHTML = pokemon.map(p => `
+                <div class="pokemon-card">
+                    <img src="${p.image}" alt="${p.name}">
+                    <h3>${p.name}</h3>
+                    <div>
+                        ${p.types.map(t => `
+                            <span class="type-badge" style="background-color: var(--${t})">${t}</span>
+                        `).join('')}
+                    </div>
+                </div>
+            `).join('');
+        } else {
+            pokemonList.innerHTML = '<p>Error loading Pokemon. Please try again.</p>';
+        }
+    } catch (error) {
+        pokemonList.innerHTML = '<p>Error loading Pokemon. Please try again.</p>';
+    }
+}
+</script>
+{% endblock %}

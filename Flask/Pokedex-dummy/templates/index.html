@@ -1,0 +1,160 @@
+{% extends "base.html" %}
+{% block title %}Pokemon Gallery{% endblock %}
+{% block style %}
+    .slideshow-container {
+        max-width: 1000px;
+        position: relative;
+        margin: auto;
+    }
+    .slide {
+        display: none;
+    }
+    .slide img {
+        width: 100%;
+        height: 500px;
+        object-fit: cover;
+    }
+    .fade {
+        animation-name: fade;
+        animation-duration: 1.5s;
+    }
+    @keyframes fade {
+        from {opacity: .4} 
+        to {opacity: 1}
+    }
+    .prev, .next {
+        cursor: pointer;
+        position: absolute;
+        top: 50%;
+        width: auto;
+        padding: 16px;
+        margin-top: -22px;
+        color: white;
+        font-weight: bold;
+        font-size: 18px;
+        transition: 0.6s ease;
+        border-radius: 0 3px 3px 0;
+        user-select: none;
+        background-color: rgba(0,0,0,0.8);
+    }
+    .next {
+        right: 0;
+        border-radius: 3px 0 0 3px;
+    }
+    .prev:hover, .next:hover {
+        background-color: rgba(0,0,0,0.9);
+    }
+    .dots-container {
+        text-align: center;
+        padding: 15px;
+    }
+    .dot {
+        cursor: pointer;
+        height: 15px;
+        width: 15px;
+        margin: 0 2px;
+        background-color: #bbb;
+        border-radius: 50%;
+        display: inline-block;
+        transition: background-color 0.6s ease;
+    }
+    .active, .dot:hover {
+        background-color: #717171;
+    }
+    .pokemon-info {
+        text-align: center;
+        padding: 20px;
+        background-color: rgba(255,255,255,0.9);
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+    }
+    .pokemon-name {
+        font-size: 24px;
+        font-weight: bold;
+        text-transform: capitalize;
+    }
+    .pokemon-types {
+        margin-top: 10px;
+    }
+    .type-badge {
+        display: inline-block;
+        padding: 5px 10px;
+        margin: 0 5px;
+        border-radius: 15px;
+        color: white;
+        font-weight: bold;
+        text-transform: capitalize;
+    }
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="slideshow-container">
+        {% for pokemon in pokemon_data %}
+        <div class="slide fade">
+            <img src="{{ pokemon.image }}" alt="{{ pokemon.name }}">
+            <div class="pokemon-info">
+                <div class="pokemon-name">{{ pokemon.name }}</div>
+                <div class="pokemon-types">
+                    {% for type in pokemon.types %}
+                    <span class="type-badge" style="background-color: {{ type_colors[type] }}">{{ type }}</span>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+
+        <div class="arrows">
+            <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
+            <a class="next" onclick="changeSlide(1)">&#10095;</a>
+        </div>
+
+        <div class="dots-container">
+            {% for pokemon in pokemon_data %}
+            <span class="dot" onclick="currentSlide({{ loop.index }})"></span>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<script>
+    let slideIndex = 1;
+    showSlides(slideIndex);
+
+    // Auto advance slides every 5 seconds
+    setInterval(() => {
+        changeSlide(1);
+    }, 5000);
+
+    function changeSlide(n) {
+        showSlides(slideIndex += n);
+    }
+
+    function currentSlide(n) {
+        showSlides(slideIndex = n);
+    }
+
+    function showSlides(n) {
+        let slides = document.getElementsByClassName("slide");
+        let dots = document.getElementsByClassName("dot");
+
+        if (n > slides.length) {slideIndex = 1}
+        if (n < 1) {slideIndex = slides.length}
+
+        // Hide all slides
+        for (let i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+
+        // Remove active class from all dots
+        for (let i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" active", "");
+        }
+
+        // Show current slide and activate corresponding dot
+        slides[slideIndex-1].style.display = "block";
+        dots[slideIndex-1].className += " active";
+    }
+</script>
+{% endblock %}

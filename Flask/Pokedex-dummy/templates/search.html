@@ -1,0 +1,114 @@
+{% extends "base.html" %}
+{% block title %}Search Pokemon{% endblock %}
+{% block style %}
+    .search-container {
+        max-width: 800px;
+        margin: 20px auto;
+        padding: 20px;
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    .search-form {
+        display: flex;
+        gap: 10px;
+        margin: 20px 0;
+    }
+    .search-form input {
+        flex: 1;
+        padding: 10px;
+        border: 2px solid #ddd;
+        border-radius: 5px;
+        font-size: 16px;
+    }
+    .search-form button {
+        padding: 10px 20px;
+        background-color: #ff5555;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+    .search-form button:hover {
+        background-color: #ff3333;
+    }
+    .search-results {
+        margin-top: 20px;
+    }
+    .pokemon-card {
+        display: flex;
+        align-items: center;
+        padding: 20px;
+        background: #f8f8f8;
+        border-radius: 10px;
+        margin-bottom: 10px;
+    }
+    .pokemon-card img {
+        width: 100px;
+        height: 100px;
+        margin-right: 20px;
+    }
+    .pokemon-info h3 {
+        margin: 0;
+        text-transform: capitalize;
+    }
+    .type-badge {
+        display: inline-block;
+        padding: 5px 10px;
+        margin: 5px;
+        border-radius: 15px;
+        color: white;
+        font-weight: bold;
+        text-transform: capitalize;
+    }
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="search-container">
+        <h2>Search Pokemon</h2>
+        <form id="search-form" class="search-form">
+            <input type="text" id="search-input" placeholder="Enter Pokemon name or ID..." required>
+            <button type="submit">Search</button>
+        </form>
+        <div id="search-results" class="search-results"></div>
+    </div>
+</div>
+
+<script>
+document.getElementById('search-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const searchInput = document.getElementById('search-input').value.toLowerCase();
+    const resultsDiv = document.getElementById('search-results');
+    
+    try {
+        const response = await fetch(`/pokemon/${searchInput}`);
+        const data = await response.json();
+        
+        if (response.ok) {
+            resultsDiv.innerHTML = `
+                <div class="pokemon-card">
+                    <img src="${data.image}" alt="${data.name}">
+                    <div class="pokemon-info">
+                        <h3>${data.name}</h3>
+                        <div>
+                            ${data.types.map(type => `
+                                <span class="type-badge" style="background-color: var(--${type})">${type}</span>
+                            `).join('')}
+                        </div>
+                        <p>Height: ${data.height/10}m</p>
+                        <p>Weight: ${data.weight/10}kg</p>
+                        <p>Abilities: ${data.abilities.join(', ')}</p>
+                    </div>
+                </div>
+            `;
+        } else {
+            resultsDiv.innerHTML = `<p>Pokemon not found. Please try another name or ID.</p>`;
+        }
+    } catch (error) {
+        resultsDiv.innerHTML = `<p>Error searching for Pokemon. Please try again.</p>`;
+    }
+});
+</script>
+{% endblock %} 
