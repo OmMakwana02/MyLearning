@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}
+  Home-MyTweets
+{% endblock %}
+
+{% block content %} 
+  <div class="container text-center mt-5">
+    <h1 class="">Welcome to MyTweets</h1>
+    <p class="">This is the home page of MyTweets application.</p>
+    <p class="">Here you can find the latest tweets and updates.</p>
+    
+    <div class="flex items-center justify-center h-full">
+      <a href="{% url 'tweet_list' %}">
+        <button type="button" class="btn btn-light rounded-pill px-4 py-2">
+          Tweet Page
+        </button>
+      </a>
+    </div>
+  </div>
+    {% endblock %}

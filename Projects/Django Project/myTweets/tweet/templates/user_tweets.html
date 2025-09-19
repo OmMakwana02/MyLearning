@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Welcome to the tweets of User {{ username }}</h2>
+
+  <div class="container row gap-3 m-4">
+    {% for tweet in tweets %}
+      <div class="card" style="width:18rem;">
+        <img src="{{ tweet.photo.url }}" class="card-img-top my-2" alt="...">
+        <div class="card-body">
+          <p class="card-text">{{ tweet.text }}</p>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}

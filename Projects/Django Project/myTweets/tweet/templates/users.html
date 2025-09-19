@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+  <h2>Welcome to Users</h2>
+  <div>
+    {% for user in users %}
+      <li>
+        <a href="{% url 'user_tweets' user.username %}">{{ user.username }}</a>
+        {% if user == request.user %}
+          <span>(You)</span>
+        {% endif %}
+      </li>
+    {% endfor %}
+  </div>
+
+{% endblock %}
