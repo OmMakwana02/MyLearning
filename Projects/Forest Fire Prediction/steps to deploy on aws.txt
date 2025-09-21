@@ -1,0 +1,31 @@
+1. create a folder(in the same directory as application.py ) - ".ebextensions"
+
+2. make a python.config file in this folder.
+  Contents of python.config:
+    option_settings:
+      "aws:e;asticbeanstalk:container:pyhton":
+      WSGIPath: application:application
+
+  comment - here, the 1st aplication file is our application.py file(where we have written the flask code.)
+
+3. make sure all this is uploaded in a git-hub repo.
+
+4. go to aws -> elasticbeanstalk -> create new application.
+
+5. fill the details (name, description,... Do not select any tags).
+
+6. Select Platform as python. Now either you upload a zip file, or you can set uo a sample application and then link it with github through pipeline.
+(we will go with th e2nd option). Create the application.
+
+7. Open aws console and select code pipeline, create pipeline.(name it, and select new service role option) -> next
+
+8. Imp step: select source provider as GitHub (Version 1), connect to github, select repo name, select branch, select github hooks. -> next
+
+9. skip build stage.-> nest. Then select deploy provider as AWS Elastic Beanstalk. 
+
+10. Till now the beanstalk env must me created. so in pipeline select application name as the project name, and you will also get the env name. -> create pipeline.
+
+11. you will see source and deployment, open deployment, amd if health col is showing ok(green tick) then everything is ok, if red then some error has occur.
+here you will also get your url.
+
+
