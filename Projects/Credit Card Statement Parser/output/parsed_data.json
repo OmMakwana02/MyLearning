@@ -1,0 +1,55 @@
+{
+  "total_records": 5,
+  "statements": [
+    {
+      "bank": "axis",
+      "filename": "AXIS.pdf",
+      "status": "success",
+      "cardholder_name": "PATNALA VINOD KUMAR",
+      "card_number": "7381",
+      "credit_limit": "132,000.00",
+      "total_due": "78,708.38",
+      "payment_due_date": "2021-11-04"
+    },
+    {
+      "bank": "citi",
+      "filename": "CITI.pdf",
+      "status": "success",
+      "cardholder_name": "ANTONIETALAPININGPABANELAS",
+      "card_number": "4383",
+      "credit_limit": "600,000.00",
+      "total_due": "25,597.55",
+      "payment_due_date": "2021-07-14"
+    },
+    {
+      "bank": "hdfc",
+      "filename": "HDFC.pdf",
+      "status": "success",
+      "cardholder_name": "NIKHIL KHANDELWAL",
+      "card_number": "4695",
+      "credit_limit": "30,000",
+      "total_due": "22,935.00",
+      "payment_due_date": "2023-04-01"
+    },
+    {
+      "bank": "icici",
+      "filename": "ICICI.pdf",
+      "status": "success",
+      "cardholder_name": "MR Nishikanta Sahu",
+      "card_number": "7005",
+      "credit_limit": "60,000.00",
+      "total_due": "13,496.80",
+      "payment_due_date": "2022-09-05"
+    },
+    {
+      "bank": "silk",
+      "filename": "SILK.pdf",
+      "status": "success",
+      "cardholder_name": "RIZWAN AHMED",
+      "card_number": "4868",
+      "credit_limit": "35,000.00",
+      "total_due": "12,144.55",
+      "payment_due_date": "2018-04-10"
+    }
+  ]
+}

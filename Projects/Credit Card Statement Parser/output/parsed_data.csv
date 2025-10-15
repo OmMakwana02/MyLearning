@@ -1,0 +1,6 @@
+bank,filename,cardholder_name,card_number,credit_limit,total_due,payment_due_date,status
+axis,AXIS.pdf,PATNALA VINOD KUMAR,7381,"132,000.00","78,708.38",2021-11-04,success
+citi,CITI.pdf,ANTONIETALAPININGPABANELAS,4383,"600,000.00","25,597.55",2021-07-14,success
+hdfc,HDFC.pdf,NIKHIL KHANDELWAL,4695,"30,000","22,935.00",2023-04-01,success
+icici,ICICI.pdf,MR Nishikanta Sahu,7005,"60,000.00","13,496.80",2022-09-05,success
+silk,SILK.pdf,RIZWAN AHMED,4868,"35,000.00","12,144.55",2018-04-10,success

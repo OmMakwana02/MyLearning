@@ -1,0 +1,14 @@
+numpy
+pandas
+seaborn
+matplotlib
+spacy
+pdfplumber
+flask
+PyMuPDF
+pdf2image
+pytesseract
+Pillow
+opencv-python
+Werkzeug
+requests
